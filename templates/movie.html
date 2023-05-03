@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% block title %} Filmanatic {% endblock title %}
+{%block body %}
+<div class="container">
+  <h1>{{ film_data['title'] }}</h1>
+  <img
+    src="https://image.tmdb.org/t/p/w500/{{film_data['poster_path']}}"
+    alt="Film poster"
+  />
+  <img
+    src="https://image.tmdb.org/t/p/w500/{{film_data['backdrop_path']}}"
+    alt="Film poster"
+  />
+</div>
+{% endblock body %}

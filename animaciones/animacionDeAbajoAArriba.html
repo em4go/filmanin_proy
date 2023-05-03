@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      #train {
+        position: relative;
+        cursor: pointer;
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <img id="train" src="https://js.cx/clipart/train.gif">
+    <script>
+      const train = document.getElementById('train');
+
+      train.onclick = function() {
+        let start = Date.now();
+        let timer = null;
+
+        // Función para mover y desvanecer la imagen
+        function moveAndFade() {
+          let opacity = 1;
+          let top = 0;
+          let direction = -1; // Cambiar dirección a -1 para mover hacia abajo
+          timer = setInterval(function() {
+            if (opacity <= 0) {
+              clearInterval(timer);
+              train.style.display = 'none'; // Ocultar la imagen después del fadeOut
+            }
+            train.style.opacity = opacity;
+            train.style.top = top + 'vh';
+            opacity -= 0.01;
+            top -= direction; // Cambiar signo de dirección para mover hacia abajo
+            if (top > 100) { // Cambiar condición para cambiar dirección al llegar al borde inferior
+              direction = -direction;
+            }
+          }, 10);
+        }
+
+        // Llamar a la función que mueve y desvanece la imagen
+        moveAndFade();
+      };
+    </script>
+  </body>
+</html>

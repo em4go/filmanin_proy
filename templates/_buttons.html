@@ -1,0 +1,10 @@
+{% macro popcorn(text, link='/') %}
+<a class="popcorn-card" href="{{ link }}">
+	<img
+		src="{{ url_for('static', path='img/popcorn.png') }}"
+		alt="popcorns"
+		class="popcorn-card__img"
+	/>
+	<p class="popcorn-card__text">{{ text }}</p>
+</a>
+{% endmacro %}

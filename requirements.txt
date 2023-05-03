@@ -1,0 +1,6 @@
+fastapi
+pandas
+jinja2
+numpy
+fastparquet
+pyarrow
