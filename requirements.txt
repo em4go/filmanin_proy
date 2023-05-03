@@ -1,6 +1,5 @@
-fastapi
+fastapi[all]
 pandas
 jinja2
-numpy
 fastparquet
 pyarrow
