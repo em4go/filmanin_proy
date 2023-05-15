@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block body %}
+<form action="">
+    <label for="genres">Choose a genre</label>
+    <input type="text" list="genres-select" name="genres">
+    <datalist  id="genres-select">
+        {% for genre in genres %}
+            <option value="{{genre}}">{{genre}}</option>
+        {% endfor %}
+    </datalist>
+    <input type="range" min="{{min_year}}" max="{{max_year}}" class="slider" id="year-selector">
+    <p id="year-text">2023</p>
+</form>
+{% endblock body %}

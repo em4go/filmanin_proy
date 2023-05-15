@@ -1,0 +1,10 @@
+{% from '_movie_card.jinja2' import movie_card %}
+{% if not movies%}
+<div class="not-found-movie">
+    <p>Movie was not found</p>
+</div>
+{% else %}
+{% for movie in movies %}
+{{movie_card(movie.id, movie.title, movie.year, movie.poster_path)}}
+{% endfor %}
+{% endif %}

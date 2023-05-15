@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div class="reccomendations" style="display: flex; align-items: center; flex-wrap: wrap">
+    <canvas id="chart" width="400" height="400"></canvas>
+</div>
+
+<script>
+    let data = {{ chartJSON | safe }}
+    const ctx = document.getElementById("chart").getContext('2d');
+    let myChart = new Chart(ctx, data);
+    {# const movies = {{movies_data | safe}}
+    for (movie of movies){
+        let data = JSON.parse(movie['chart'])
+        const ctx = document.getElementById(`chart-${movie['id']}`).getContext('2d');
+        let myChart = new Chart(ctx, data);
+    } #}
+</script>
+{% endblock body %}
