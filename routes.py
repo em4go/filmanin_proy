@@ -4,10 +4,9 @@ from fastapi.responses import FileResponse, JSONResponse, HTMLResponse
 from python_files import search
 from pathlib import Path
 from fastapi_htmx import htmx, htmx_init
-import random
 from python_files.chartjs import SpiderChart
 from python_files import recommendation
-import json
+from python_files.tmdb import API_KEY
 
 
 import pandas as pd
@@ -26,6 +25,11 @@ similarity_matrix = recommendation.sim_matrix(df)
 def home(request: Request):
     context = {"request": request}
     return templates.TemplateResponse("index.html", context)
+
+
+@router.get("/api")
+def home():
+    return {"api_key": API_KEY}
 
 
 @router.get("/hola/", response_class=HTMLResponse)

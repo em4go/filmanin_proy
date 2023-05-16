@@ -1,0 +1,10 @@
+fastapi[all]
+fastapi-htmx
+pandas==2.0.1
+pyChart.JS==0.3.0
+Requests==2.30.0
+scikit_learn==1.2.2
+thefuzz==0.19.0
+fastparquet
+pyarrow
+jinja2
