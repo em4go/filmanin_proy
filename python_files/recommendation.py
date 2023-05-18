@@ -69,10 +69,10 @@ def sacar_puntuaciones_completo(df, kw_list, genero, actores, director, año, si
         years_p = similitud_anios(int(año), int(row["year"]), 0.11)  # Sobre 1
         director_p = compararListas(director, row["director"])  # Sobre 10
         description_p = sim_dict[i]  # sobre 1
-        # kw * 0.35; genres * 0.15; cast * 0.05; years * 0.5; director * 0.1; description * 3
+        # kw * 0.3; genres * 0.15; cast * 0.1; years * 0.5; director * 0.1; description * 3
 
         labels = [keywords_p, genres_p, cast_p, years_p, director_p, description_p]
-        values = [0.35, 0.15, 0.05, 0.5, 0.1, 3]
+        values = [0.3, 0.15, 0.1, 0.5, 0.1, 3]
         points = sum(list(map(lambda x, y: x * y, labels, values)))
         results = {
             "keywords": keywords_p,

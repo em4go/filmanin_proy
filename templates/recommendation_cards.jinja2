@@ -1,0 +1,10 @@
+{% from '_tmdb_cards.jinja2' import tmdb_card with context%}
+{% if not movies%}
+<div class="not-found-movie">
+    <p>Movie was not found</p>
+</div>
+{% else %}
+{% for movie in movies %}
+{{tmdb_card(movie.id, movie.title, movie.year, movie.backdrop_path)}}
+{% endfor %}
+{% endif %}

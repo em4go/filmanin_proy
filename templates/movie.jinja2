@@ -1,5 +1,7 @@
 {% extends "base.html" %} {% block title %} Filmanatic {% endblock title %}
+{% from '_navbar.jinja2' import navbar with context %}
 {%block body %}
+{{ navbar() }}
 <header class="movie-header">
   <img
     src="{{film_data['poster_path']}}"
@@ -9,6 +11,11 @@
   <div class="header-content">
     <h1>{{ film_data['title'] }}</h1>
     <p>{{film_data['year']}}</p>
+    <div class="genres-container">
+      {% for genre in film_data['genres'] %}
+        <p class="genre">{{genre}}</p>
+      {% endfor %}
+    </div>
     <div class="rating-container">
       <h2 class="subtitle">Rating</h2>
       <div class="rating-circle">
@@ -64,6 +71,20 @@
     </div>
   {% endfor %}
   </div>
+</section>
+<section style="width: 100%">
+  <h2>TMDB Recommendations</h2>
+  <button
+        id="search-button"
+        class=""
+        type="submit"
+        hx-get="/recommendation/{{film_data['id']}}"
+        hx-swap="innerHTML"
+        hx-target="#tmdb-recommendations"
+    >
+        Load Data
+  </button>
+  <div id="tmdb-recommendations" style="display: flex; flex-direction:row; overflow-x: auto; width: 100%; gap: 30px;"></div>
 </section>
 
 <script>

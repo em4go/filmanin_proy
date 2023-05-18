@@ -2,8 +2,8 @@ import requests
 import json
 from os import environ as env
 
-key = env["API_KEY"]
-API_KEY = f"?api_key={key}"
+# key = env["API_KEY"]
+API_KEY = f"?api_key=f830493fe21a93ae2fbc53fe087f8961"
 URL_BASE = "https://api.themoviedb.org/3/"
 IMG_URL_BASE = f"https://image.tmdb.org/t/p/w500/"
 
@@ -19,7 +19,7 @@ class TMDB_wrapper:
         self.url_base = url_base
         self.img_url_base = img_url_base
 
-    def get_url(url):
+    def get_url(self, url):
         response = requests.get(url)
         if response.status_code == 200:
             return json.loads(response.content)
@@ -44,3 +44,7 @@ class TMDB_wrapper:
     def get_credits(self, movie_id):
         url = f"{self.url_base}movie/{movie_id}/credits{self.api_key}"
         return self.get_url(url)
+
+    def get_recommendations(self, movie_id):
+        url = f"{self.url_base}movie/{movie_id}/recommendations{self.api_key}"
+        return self.get_url(url)["results"]

@@ -6,7 +6,7 @@ from pathlib import Path
 from fastapi_htmx import htmx, htmx_init
 from python_files.chartjs import SpiderChart
 from python_files import recommendation
-from python_files.tmdb import API_KEY
+from python_files.tmdb import API_KEY, TMDB_wrapper
 
 
 import pandas as pd
@@ -28,34 +28,36 @@ def home(request: Request):
 
 
 @router.get("/api")
-def home():
+def api():
     return {"api_key": API_KEY}
+
+
+# @router.get("/recommendation/{movie_id}")
+# def tmdb_recommendation(movie_id: int):
+#     tmdb = TMDB_wrapper()
+#     movie = tmdb.get_recommendations(movie_id)
+#     return movie
+
+
+@router.get("/recommendation/{movie_id}", response_class=HTMLResponse)
+@htmx("recommendation_cards")
+async def search_title(movie_id: str, request: Request):
+    tmdb = TMDB_wrapper()
+    recommendations = tmdb.get_recommendations(movie_id)
+    ids = [x["id"] for x in recommendations]
+    filtered = df[df["id"].isin(ids)]
+    movies = []
+    for index, row in filtered.iterrows():
+        movies.append(row.to_dict())
+    context = {"movies": movies, "request": request}
+    return context
 
 
 @router.get("/hola/", response_class=HTMLResponse)
 @htmx("pruebas", "pruebas")
-async def hola(request: Request, id: int):
-    movie_id = id
-    rec_list = recommendation.process_reccom(df, movie_id, similarity_matrix)
-    movies = recommendation.get_top_recommended_movies(df, rec_list, 5)
-    movies_data = []
-    for i in range(len(movies)):
-        mov = movies[i]
-        chart = SpiderChart()
-        data = list(mov["results"].values())
-        chart.data.data = data
-        chart.labels.names = list(mov["results"].keys())
-        chart.data.label = mov["title"]
-        chart_json = chart.get()
-        movie = {
-            "id": mov["id"],
-            "title": mov["title"],
-            "chart": chart_json,
-            "poster_path": mov["poster_path"],
-        }
-        movies_data.append(movie)
-
-    context = {"request": request, "movies_data": movies_data}
+async def hola(request: Request):
+    tmdb = TMDB_wrapper()
+    context = {"request": request}
     return context
 
 
@@ -136,6 +138,7 @@ async def search_title(title: str, request: Request):
     for index, row in filtered_movies.iterrows():
         movies.append(row.to_dict())
     context = {"movies": movies}
+
     return context
 
 

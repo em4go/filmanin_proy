@@ -1,0 +1,16 @@
+{% macro tmdb_card(id, title, year='', poster_path="../static/img/null_poster.svg") %}
+
+<div class="tmdb-card" style="width: 20%;">
+  <img src="{{poster_path}}" alt="Movie cover" class="tmdb-card__poster" />
+
+  {% if id %}
+  <a class="tmdb-card__text" href="/movie/{{id}}">
+  {% else %}
+  <a class="tmdb-card__text" href="#">
+  {% endif %}
+    <p class="tmdb-card__title">{{title}}</p>
+    <p class="tmdb-card__year">{{year}}</p>
+  </a>
+</div>
+
+{% endmacro %}

@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% from '_movie_card.jinja2' import movie_card with context %} 
+{% extends "base.html" %} {% from '_movie_cards.jinja2' import movie_card with context %} 
 {% block body %}
 <div style="display: flex; width: 100%">
 
@@ -6,10 +6,10 @@
         {% for movie in movies_data %}
         <!-- <img src="{{movie}}" style="position: relative; top: 0; left: 0; transform: translate(0, -100%)"> -->
         <a href="/movie/{{movie.id}}">
-                <img src="{{movie.poster_path}}" class="movie-fly" id="movie-covers-down" style="position: absolute; top: 0; left: 0; transform: translate(0, -100%)">
+                <img src="{{movie.poster_path}}" class="movie-fly" id="movie-covers-down" style="position: absolute; top: 0; left: 0; transform: translate(0, -110%)">
         </a>
         {% endfor %}
-        </div>
+    </div>
 
 
 <section style="width: 70%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
@@ -18,11 +18,11 @@
         hx-get="/search"
         hx-swap="innerHTML"
         hx-target="#movies"
-        class="text-black">
-<input type="text" id="search-input" class="text-black" name="title">
+        class="">
+<input type="text" id="search-input" class="" name="title">
 <button
         id="search-button"
-        class="text-black"
+        class=""
         type="submit"
     >
         Load Data
@@ -39,7 +39,7 @@
         {% for movie in movies_data[::-1] %}
     <!-- <img src="{{movie}}" style="position: relative; top: 0; left: 0; transform: translate(0, -100%)"> -->
     <a href="/movie/{{movie.id}}">
-        <img src="{{movie.poster_path}}" class="movie-fly" id="movie-covers-up" style="position: absolute; bottom: 0; right: 0; transform: translate(0, 100%)">
+        <img src="{{movie.poster_path}}" class="movie-fly" id="movie-covers-up" style="position: absolute; bottom: 0; right: 0; transform: translate(0, 110%)">
     </a>
 {% endfor %}
 </div>
@@ -50,7 +50,6 @@
 <script >
     function animateMoviesDown() {
     const movieCovers = document.querySelectorAll('#movie-covers-down');
-    console.log(movieCovers[1])
 
     let currentIndex = 0;
     let nextIndex = 1;
@@ -59,11 +58,10 @@
         movieCovers[currentIndex].style.transform = 'translate(0, 400%)';
         currentIndex = nextIndex;
         nextIndex = (nextIndex + 1) % movieCovers.length;
-    }, 7000);
+    }, 3000);
     }
     function animateMoviesUp() {
     const movieCovers = document.querySelectorAll('#movie-covers-up');
-    console.log(movieCovers[1])
 
     let currentIndex = 0;
     let nextIndex = 1;
@@ -72,7 +70,7 @@
         movieCovers[currentIndex].style.transform = 'translate(0, -400%)';
         currentIndex = nextIndex;
         nextIndex = (nextIndex + 1) % movieCovers.length;
-    }, 7000);
+    }, 3000);
     }
 </script>
 {% endblock body %}
