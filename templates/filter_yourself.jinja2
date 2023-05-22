@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block body %}
-<form action="">
+<div class="container">
+<form action="" x-data="{year: '2023'}">
     <label for="genres">Choose a genre</label>
     <input type="text" list="genres-select" name="genres">
     <datalist  id="genres-select">
@@ -8,7 +9,14 @@
             <option value="{{genre}}">{{genre}}</option>
         {% endfor %}
     </datalist>
-    <input type="range" min="{{min_year}}" max="{{max_year}}" class="slider" id="year-selector">
-    <p id="year-text">2023</p>
+    <div class="" style="display: flex; flex-direction: row; align-items: center; justify-content: center">
+        <p>1902</p>
+        <div class="" style="display: flex; flex-direction: column; align-items: center; justify-content: center">
+            <input x-model="year" type="range" min="{{min_year}}" max="{{max_year}}" class="slider" id="year-selector">
+            <p x-text="year"></p>
+        </div>
+        <p>2023</p>
+    </div>
 </form>
+</div>
 {% endblock body %}

@@ -1,8 +1,11 @@
 {% extends "base.html" %} {% from '_movie_cards.jinja2' import movie_card with context %} 
 {% block body %}
-<div style="display: flex; width: 100%">
 
-    <div x-init="animateMoviesDown()" style="overflow: hidden; position: relative; width: 15%; min-height: 90vh;" >
+<div class="container h-screen" >
+<div class="trust-us__container" >
+
+{% if not is_mobile %}
+    <div x-init="animateMoviesDown()" class="img-carrousel" style="overflow: hidden; position: relative; width: 15%; min-height: 100lvh;" >
         {% for movie in movies_data %}
         <!-- <img src="{{movie}}" style="position: relative; top: 0; left: 0; transform: translate(0, -100%)"> -->
         <a href="/movie/{{movie.id}}">
@@ -10,19 +13,20 @@
         </a>
         {% endfor %}
     </div>
+{% endif %}
 
 
-<section style="width: 70%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+<section class="search-section" >
 
         <form id="search-form"
         hx-get="/search"
         hx-swap="innerHTML"
         hx-target="#movies"
-        class="">
-<input type="text" id="search-input" class="" name="title">
+        class="search-form">
+<input type="text" id="search-input" class="search-input" name="title" placeholder="Search movies...">
 <button
         id="search-button"
-        class=""
+        class="search-button"
         type="submit"
     >
         Load Data
@@ -35,18 +39,17 @@
 </div>
 </section>
 
-<div x-init="animateMoviesUp()" style="overflow: hidden; position: relative; width: 15%; min-height: 90vh;" >
-        {% for movie in movies_data[::-1] %}
-    <!-- <img src="{{movie}}" style="position: relative; top: 0; left: 0; transform: translate(0, -100%)"> -->
+{% if not is_mobile %}
+<div x-init="animateMoviesUp()" class="img-carrousel" style="overflow: hidden; position: relative; width: 15%; min-height: 90vh;" >
+    {% for movie in movies_data[::-1] %}
     <a href="/movie/{{movie.id}}">
         <img src="{{movie.poster_path}}" class="movie-fly" id="movie-covers-up" style="position: absolute; bottom: 0; right: 0; transform: translate(0, 110%)">
     </a>
 {% endfor %}
 </div>
+{% endif %}
 </div>
-
-
-
+</div>
 <script >
     function animateMoviesDown() {
     const movieCovers = document.querySelectorAll('#movie-covers-down');
@@ -55,7 +58,7 @@
     let nextIndex = 1;
 
     setInterval(() => {
-        movieCovers[currentIndex].style.transform = 'translate(0, 400%)';
+        movieCovers[currentIndex].style.transform = 'translate(0, 800%)';
         currentIndex = nextIndex;
         nextIndex = (nextIndex + 1) % movieCovers.length;
     }, 3000);
@@ -67,7 +70,7 @@
     let nextIndex = 1;
 
     setInterval(() => {
-        movieCovers[currentIndex].style.transform = 'translate(0, -400%)';
+        movieCovers[currentIndex].style.transform = 'translate(0, -800%)';
         currentIndex = nextIndex;
         nextIndex = (nextIndex + 1) % movieCovers.length;
     }, 3000);

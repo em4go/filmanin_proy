@@ -1,19 +1,20 @@
 {% macro navbar() %}
 <nav class="nav-bar">
-  <a href="/" class="width-full">
-      <picture class="width-full">
+  <a href="/" class="nav-bar__link">
+      <picture class="nav-bar__img">
       <source
         srcset="../static/img/logo_light.svg"
         ,
         media="(prefers-color-scheme: light)"
       />
       <img
-        class="nav-bar__img"
+        class="width-full"
         src="../static/img/logo_dark.svg"
         alt="Logo"
       />
     </picture>
-    </a>
+  </a>
+  <p class="nav-bar__text">FILMANIN</p>
 </nav>
 
 {% endmacro %}

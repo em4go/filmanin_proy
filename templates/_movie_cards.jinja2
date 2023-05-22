@@ -1,7 +1,13 @@
-{% macro movie_card(id, title, year='', poster_path="../static/img/null_poster.svg") %}
+{% macro movie_card(id, title, year='', poster_path="../static/img/no_poster.svg") %}
 
 <div class="movie-card">
-  <img src="{{poster_path}}" alt="Movie cover" class="movie-card__poster" />
+  <img
+    {% if poster_path %}
+      src="{{poster_path}}"
+    {% else %}
+      src="../static/img/no_poster.svg"
+    {% endif %}
+    alt="Movie cover" class="movie-card__poster" />
 
   {% if id %}
   <a class="movie-card__text" href="/movie/{{id}}">

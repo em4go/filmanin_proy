@@ -87,7 +87,7 @@ def movie(request: Request, movie_id: int):
 
     # Recommendations
     rec_list = recommendation.process_reccom(df, movie_id, similarity_matrix)
-    recommended_movies = recommendation.get_top_recommended_movies(df, rec_list, 6)
+    recommended_movies = recommendation.get_top_recommended_movies(df, rec_list, 9)
     recommendations = []
     for i in range(len(recommended_movies)):
         mov = recommended_movies[i]
@@ -119,12 +119,16 @@ def movie(request: Request, movie_id: int):
 @router.get("/trust_us", response_class=HTMLResponse)
 @htmx("trustus", "trustus")
 def trust_us(request: Request):
+    user_agent = request.headers.get("user-agent", "")
+    is_mobile = (
+        "Mobile" in user_agent or "Android" in user_agent or "iPhone" in user_agent
+    )
     movies_data = []
     for index, row in df.iterrows():
         if len(movies_data) < 100:
             movies_data.append(row.to_dict())
             continue
-    context = {"request": request, "movies_data": movies_data}
+    context = {"request": request, "movies_data": movies_data, "is_mobile": is_mobile}
     return context
 
 

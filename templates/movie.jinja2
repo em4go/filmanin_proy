@@ -1,10 +1,15 @@
-{% extends "base.html" %} {% block title %} Filmanatic {% endblock title %}
+{% extends "base.html" %} 
 {% from '_navbar.jinja2' import navbar with context %}
 {%block body %}
+<div class="container">
 {{ navbar() }}
 <header class="movie-header">
   <img
-    src="{{film_data['poster_path']}}"
+    {% if film_data['poster_path'] %}
+      src="{{film_data['poster_path']}}"
+    {% else %}
+      src="../static/img/no_poster.svg"
+    {% endif %}
     alt="Film poster"
     class="movie-header__img"
   />
@@ -17,7 +22,7 @@
       {% endfor %}
     </div>
     <div class="rating-container">
-      <h2 class="subtitle">Rating</h2>
+      <h2 class="subtitle">Rating ({{film_data['vote_count']}} votes)</h2>
       <div class="rating-circle">
         <p>{{film_data['vote_average']}}</p>
       </div>
@@ -28,44 +33,64 @@
     </div>
   </div>
 </header>
-<div class="crew-container">
-  <section class="cast-section">
-    <h2>Cast</h2>
-    <div class="characters-container">
+<div class="crew-container ">
+  <section class="cast-section crew-section">
+    <h2 class="crew_title" >Cast</h2>
+    <ul class="characters-container">
     {% for character in film_data['cast_dict'] %}
-      <div class="character-card">
-        <img src="https://image.tmdb.org/t/p/w500{{character.profile_path}}" alt="" class="character-card__img">
+      <li class="character-card">
+          <img
+          {% if character['profile_path'] %}
+            src="https://image.tmdb.org/t/p/w500{{character.profile_path}}"
+          {% else %}
+            src="../static/img/people_poster.svg"
+          {% endif %}
+            alt="Actor image"
+            class="character-card__img"
+          />
         <div class="character-card__text">
           <p>{{character.name}}</p>
           <p>{{character.character}}</p>
         </div>
-      </div>
+      </li>
+    {% else %}
+      <li>No cast found</li>
     {% endfor %}
-    </div>
+    </ul>
   </section>
-  <section class="director-section">
-    <h2>Director</h2>
-      <div class="characters-container">
+  <section class="director-section crew-section">
+    <h2 class="crew_title" >Director</h2>
+      <ul class="characters-container">
       {% for character in film_data['director_dict'] %}
-        <div class="character-card">
-          <img src="https://image.tmdb.org/t/p/w500{{character.profile_path}}" alt="" class="character-card__img">
+        <li class="character-card">
+            <img
+            {% if character['profile_path'] %}
+              src="https://image.tmdb.org/t/p/w500{{character.profile_path}}"
+            {% else %}
+              src="../static/img/people_poster.svg"
+            {% endif %}
+              alt="Actor image"
+              class="character-card__img"
+            />
           <div class="character-card__text">
             <p>{{character.name}}</p>
           </div>
-        </div>
+        </li>
+      {% else %}
+        <li>Not found</li>
       {% endfor %}
-    </div>
+    </ul>
   </section>
 </div>
 <section>
   <h2>Recommendations</h2>
-  <div style="width: 100%; display: flex; gap: 16px; flex-wrap: wrap; align-items: center; justify-content: center; ">
+  <div class="movie-recommendations">
   {% for movie in recommendations %}
-    <div class="reccomendations" style="width: 30%; display: flex; align-items: center; justify-content: center">
-        <a href="/movie/{{movie['id']}}" style="width: 30%;">
+    <div class="movie-reccomendations__item">
+        <a href="/movie/{{movie['id']}}" class="recommendation__img">
           <img src="{{movie['poster_path']}}" alt="Poster from {{movie['title']}}" width="100%" >
         </a>
-        <div class="reccomendations" style="width: 70%;">
+        <div class="reccomendation" >
           <canvas id="chart-{{ movie['id'] }}" ></canvas>
         </div>
     </div>
@@ -84,9 +109,10 @@
     >
         Load Data
   </button>
-  <div id="tmdb-recommendations" style="display: flex; flex-direction:row; overflow-x: auto; width: 100%; gap: 30px;"></div>
+  <div id="tmdb-recommendations" class="tmdb-recommendations" style=""></div>
 </section>
 
+</div>
 <script>
     {# let data = {{ chartJSON | safe }}
     const ctx = document.getElementById("chart").getContext('2d');
