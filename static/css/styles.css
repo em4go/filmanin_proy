@@ -6,7 +6,6 @@
   --red-primary: #dd5353;
   --clr-font-black: #323232;
   --clr-font-white: #eaeaea;
-  --font-title: 4rem;
   --font-step--2: clamp(0.72rem, calc(0.69rem + 0.14vw), 0.80rem);
   --font-step--1: clamp(0.90rem, calc(0.87rem + 0.17vw), 1.00rem);
   --font-step-0: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
@@ -21,7 +20,6 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  font-size: var(--font-step--1);
 }
 
 html {
@@ -35,6 +33,10 @@ section {
 
 a {
   color: var(--clr-font-black);
+}
+
+p {
+  font-size: var(--font-step--1);
 }
 
 img {
@@ -55,10 +57,12 @@ img {
 .h-screen {
   height: 100vh;
   height: 100lvh;
+  overflow: hidden;
 }
 .w-screen {
   width: 100vw;
   width: 100lvw;
+  overflow: hidden;
 }
 .header {
   width: 100%;
@@ -294,8 +298,11 @@ img {
   border: var(--red-primary) 10px solid;
   display: grid;
   place-items: center;
-  font-size: var(--font-step--1);
   font-weight: bold;
+}
+
+.rating-circle p {
+  font-size: var(--font-step-1);
 }
 
 .movie-header {
@@ -319,6 +326,7 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: left;
+  gap: 40px;
   min-width: 60%;
   padding: 50px;
 }
@@ -346,7 +354,7 @@ img {
   width: 30%;
 }
 .crew-section {
-  height: min(250px, 100%);
+  height: min(300px, 100%);
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -416,11 +424,11 @@ img {
 }
 
 .movie-recommendations > * {
-  flex: 1 1 clamp(350px, 30%, 575px);
+  flex: 1 1 clamp(300px, 30%, 575px);
 }
-.recommendation {
+.recommendation-graphic {
   height: 100%;
-  width: min(300px, 50%);
+  width: max(300px, 50%);
 }
 
 .recommendation__img {
@@ -429,7 +437,25 @@ img {
 }
 
 .movie-reccomendations__item {
-  display: flex; align-items: center; justify-content: center;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  flex-direction: column;
+  max-width: 575px;
+  border-bottom: 3px solid var(--red-primary);
+}
+
+.movie-recommendations__name {
+  font-size: var(--font-step-0);
+}
+
+.movie-recommendations__images {
+  width: 100%;
+  display: flex; 
+  align-items: center; 
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
   max-width: 575px;
 }
 
@@ -514,5 +540,8 @@ img {
   }
   .crew-section {
     width: 100%;
+  }
+  .movie-recommendations__images {
+    flex-wrap: wrap;
   }
 }

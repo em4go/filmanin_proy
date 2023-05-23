@@ -89,11 +89,14 @@
   <div class="movie-recommendations">
   {% for movie in recommendations %}
     <div class="movie-reccomendations__item">
-        <a href="/movie/{{movie['id']}}" class="recommendation__img">
-          <img src="{{movie['poster_path']}}" alt="Poster from {{movie['title']}}" width="100%" >
-        </a>
-        <div class="reccomendation" >
-          <canvas id="chart-{{ movie['id'] }}" ></canvas>
+        <p class="movie-recommendations__name">{{movie['title']}}</p>
+        <div class="movie-recommendations__images">
+          <a href="/movie/{{movie['id']}}" class="recommendation__img">
+            <img src="{{movie['poster_path']}}" alt="Poster from {{movie['title']}}" width="100%" >
+          </a>
+          <div class="reccomendation" >
+            <canvas id="chart-{{ movie['id'] }}" ></canvas>
+          </div>
         </div>
     </div>
   {% endfor %}
@@ -103,7 +106,7 @@
   <h2>TMDB Recommendations</h2>
   <button
         id="search-button"
-        class=""
+        class="search-button"
         type="submit"
         hx-get="/recommendation/{{film_data['id']}}"
         hx-swap="innerHTML"
