@@ -40,7 +40,7 @@
 </section>
 
 {% if not is_mobile %}
-<div x-init="animateMoviesUp()" class="img-carrousel" style="overflow: hidden; position: relative; width: 15%; min-height: 90vh;" >
+<div x-init="animateMoviesUp()" class="img-carrousel" style="overflow: hidden; position: relative; width: 15%; min-height: 100lvh;" >
     {% for movie in movies_data[::-1] %}
     <a href="/movie/{{movie.id}}">
         <img src="{{movie.poster_path}}" class="movie-fly" id="movie-covers-up" style="position: absolute; bottom: 0; right: 0; transform: translate(0, 110%)">

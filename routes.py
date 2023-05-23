@@ -105,9 +105,6 @@ def movie(request: Request, movie_id: int):
         }
         recommendations.append(recommended_movie)
 
-    # TMDB's recommendations
-    # ----------------------------------Rellenar --------------------------------------------
-
     context = {
         "request": request,
         "recommendations": recommendations,
@@ -159,3 +156,9 @@ async def filter_yourself(request: Request):
 
     context = {"genres": genres, "min_year": min_year, "max_year": max_year}
     return context
+
+
+@router.get("/credits", response_class=HTMLResponse)
+@htmx("credits", "credits")
+async def credits(request: Request):
+    return {"request": request}

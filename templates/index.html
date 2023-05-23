@@ -1,24 +1,25 @@
 {% extends "base.html" %} {% from '_buttons.html' import popcorn with context %}
 {% block body %}
-<header class="header">
-  <div class="title-container">
-    <picture class="width-80">
-      <source
-        srcset="../static/img/logo_light.svg"
-        ,
-        media="(prefers-color-scheme: light)"
-      />
-      <img
-        class="width-full"
-        src="../static/img/logo_dark.svg"
-        alt="logo"
-      />
-    </picture>
-    <h1 class="title__text">FILMANIN</h1>
-  </div>
-  <div class="buttons-container">
-    {{ popcorn('Filter yourself', link='/filter') }} {{ popcorn('Trust us',
-    link='/trust_us') }}
-  </div>
-</header>
+<div class="container">
+  <header class="header">
+    <div class="title-container">
+      <picture class="title-img">
+        <source
+          srcset="../static/img/logo_light.svg"
+          ,
+          media="(prefers-color-scheme: light)"
+        />
+        <img
+          class="width-full"
+          src="../static/img/logo_dark.svg"
+          alt="logo"
+        />
+      </picture>
+      <h1 class="title__text">FILMANIN</h1>
+    </div>
+    <div class="buttons-container">
+      {{ popcorn('Credits', link='/credits') }} {{ popcorn('Trust us', link='/trust_us') }}
+    </div>
+  </header>
+</div>
 {% endblock body %}

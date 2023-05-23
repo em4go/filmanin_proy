@@ -14,8 +14,10 @@
     class="movie-header__img"
   />
   <div class="header-content">
-    <h1>{{ film_data['title'] }}</h1>
-    <p>{{film_data['year']}}</p>
+    <div class="header-content__principal">
+      <h1 class="movie-header__title">{{ film_data['title'] }}</h1>
+      <p>{{film_data['year']}}</p>
+    </div>
     <div class="genres-container">
       {% for genre in film_data['genres'] %}
         <p class="genre">{{genre}}</p>
