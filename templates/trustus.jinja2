@@ -1,4 +1,5 @@
 {% extends "base.html" %} {% from '_movie_cards.jinja2' import movie_card with context %} 
+{% from '_navbar.jinja2' import navbar with context %}
 {% block body %}
 
 <div class="container h-screen" >
@@ -17,13 +18,14 @@
 
 
 <section class="search-section" >
+{{ navbar() }}
 
         <form id="search-form"
         hx-get="/search"
         hx-swap="innerHTML"
         hx-target="#movies"
         class="search-form">
-<input type="text" id="search-input" class="search-input" name="title" placeholder="Search movies...">
+<input type="text" id="search-input" class="search-input" name="title" placeholder="Search movie title in English">
 <button
         id="search-button"
         class="search-button"
@@ -45,7 +47,7 @@
     <a href="/movie/{{movie.id}}">
         <img src="{{movie.poster_path}}" class="movie-fly" id="movie-covers-up" style="position: absolute; bottom: 0; right: 0; transform: translate(0, 110%)">
     </a>
-{% endfor %}
+    {% endfor %}
 </div>
 {% endif %}
 </div>

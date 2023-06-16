@@ -122,6 +122,10 @@ img {
   font-weight: 700;
   font-size: var(--font-step-5);
 }
+.subtitle__text {
+  font-weight: 500;
+  font-size: var(--font-step-3);
+}
 
 .buttons-container {
   display: flex;
@@ -447,6 +451,7 @@ img {
 
 .movie-recommendations__name {
   font-size: var(--font-step-0);
+  text-align: center;
 }
 
 .movie-recommendations__images {
@@ -460,11 +465,16 @@ img {
 }
 
 .tmdb-recommendations {
+  margin-top: 40px;
   display: flex; 
   flex-direction:row; 
   overflow-x: auto;
   width: 100%; 
   gap: 30px;
+}
+
+.credits-header {
+  width: 100%;
 }
 
 .person-container {
@@ -474,6 +484,7 @@ img {
   justify-content: center;
   gap: 50px;
   flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 .person-card {
@@ -493,8 +504,28 @@ img {
   color: var(--red-primary)
 }
 
+.person-card__img {
+  max-width: 100%;
+  width: 100px;
+  object-fit: cover;
+  border-bottom-left-radius: 100%;
+  border-bottom-right-radius: 100%;
+}
+
 .tmdb-logo {
-  width: 50%;
+  width: clamp(100px, 80px + 40vw, 600px)
+}
+
+.tmdb-logo__container{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(10px, 20px + 1vw, 600px);
+}
+
+.credits__section {
+  margin-bottom: 50px;
 }
 
 
@@ -526,6 +557,7 @@ img {
     background-color: var(--bg-primary-dark);
   }
 }
+
 
 @media screen and (max-width: 720px){
   .movie-header {

@@ -2,46 +2,46 @@
 {% from '_navbar.jinja2' import navbar with context %}
 {% block body %}
 <div class="container">
-    <header>
+    <header class="credits-header">
     {{ navbar() }}
     <h1>Credits</h1>
     </header>
     <main>
-        <section>
-            <h2>Who we are?</h2>
-            <p>We are a group of students from Universidad Politécnica de Valencia (UPV) who made a project for PROY I subject</p>
+        <section class="credits__section">
+            <h2>Who are we?</h2>
+            <p>We are a group of students from Universitat Politècnica de València (UPV) who made a project for PROY I subject.</p>
             <p>Our purpose was to create a movie recommender based on movies info once the user gives a title that she/he likes.</p>
             <div class="person-container">
                 <div class="person-card">
-                    <img class="person-card__img" src="../static/img/people_poster.svg" alt="Máximo Valero">
+                    <img class="person-card__img" src="../static/img/maximo.png" alt="Máximo Valero">
                     <div class="person-card__text">
                         <p class="person-card__name">Máximo</p>
                         <p class="person-card__surname">Valero</p>
                     </div>
                 </div>
                 <div class="person-card">
-                    <img class="person-card__img" src="../static/img/people_poster.svg" alt="Máximo Valero">
+                    <img class="person-card__img" src="../static/img/adripan.png" alt="Máximo Valero">
                     <div class="person-card__text">
                         <p class="person-card__name">Adrián</p>
                         <p class="person-card__surname">Castillo</p>
                     </div>
                 </div>
                 <div class="person-card">
-                    <img class="person-card__img" src="../static/img/people_poster.svg" alt="Máximo Valero">
+                    <img class="person-card__img" src="../static/img/ernesto2.png" alt="Máximo Valero">
                     <div class="person-card__text">
                         <p class="person-card__name">Ernesto</p>
                         <p class="person-card__surname">Martínez</p>
                     </div>
                 </div>
                 <div class="person-card">
-                    <img class="person-card__img" src="../static/img/people_poster.svg" alt="Máximo Valero">
+                    <img class="person-card__img" src="../static/img/jarfaiter.png" alt="Máximo Valero">
                     <div class="person-card__text">
                         <p class="person-card__name">Alejandro</p>
                         <p class="person-card__surname">Navarro</p>
                     </div>
                 </div>
                 <div class="person-card">
-                    <img class="person-card__img" src="../static/img/people_poster.svg" alt="Máximo Valero">
+                    <img class="person-card__img" src="../static/img/german.png" alt="Máximo Valero">
                     <div class="person-card__text">
                         <p class="person-card__name">Germán</p>
                         <p class="person-card__surname">Mallo</p>
@@ -49,9 +49,11 @@
                 </div>
             </div>
         </section>
-        <section>
+        <section class="credits__section">
             <h2>Where comes the dataset from?</h2>
-            <img class="tmdb-logo" src="../static/img/tmdb_logo_long.svg" alt="TMDB Logo">
+            <div class="tmdb-logo__container">
+                <img class="tmdb-logo" src="../static/img/tmdb_logo_long.svg" alt="TMDB Logo">
+            </div>
             <p>Our data comes from the TMDB API, which we used to collect data from the 10.000 most popular movies on 1st May 2023. It includes much information about the movies, cast and directors. And it is recent enought to have most of the movies that users would like to use for recommendations. The size is also great, as it is not small at all, but is small enough to let us analyze the data of the films in real time to give the users our recommendaions.</p>
         </section>
     </main>
