@@ -31,10 +31,6 @@ To configure the web app you have to create a `.env.development` file in the roo
 API_KEY='your_api_key'
 ```
 
-## License
-
-Still not decided.
-
 ## Contributing
 
 The project is not open to contributions. It was made for a college subject and it is not going to be maintained.
