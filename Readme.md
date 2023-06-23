@@ -34,9 +34,3 @@ API_KEY='your_api_key'
 ## Contributing
 
 The project is not open to contributions. It was made for a college subject and it is not going to be maintained.
-
-## Author: Ernesto Martínez Gómez
-
-- [Linkedin](https://www.linkedin.com/in/ernesto-mart%C3%ADnez-g%C3%B3mez-98244b1b4/)
-
-- [GitHub](https://github.com/em4go)
